@@ -6,7 +6,10 @@ export class ContactList extends Component {
     const filteredContacts = this.props.getFilteredContacts();
     return (
       <ul>
-        <ContactListItem filteredContacts={filteredContacts} />
+        <ContactListItem
+          filteredContacts={filteredContacts}
+          onDeleteContact={this.props.onDeleteContact}
+        />
       </ul>
     );
   }

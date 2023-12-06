@@ -28,6 +28,13 @@ export class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    for (let item of this.state.contacts) {
+      if (item.name === this.state.name) {
+        alert(`${item.name} is already in contacts.`);
+        event.currentTarget.reset();
+        return;
+      }
+    }
     this.createContact(this.state);
     event.currentTarget.reset();
   };
@@ -46,6 +53,12 @@ export class App extends Component {
     );
   };
 
+  onDeleteContact = id => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   render() {
     return (
       <div>
@@ -55,10 +68,17 @@ export class App extends Component {
           handleChange={this.handleChange}
         />
         <h2>Contacts</h2>
-        <Filter handleFilter={this.handleFilter} />
-        <ContactList
-          getFilteredContacts={this.getFilteredContacts}
-        ></ContactList>
+        {this.state.contacts.length ? (
+          <div>
+            <Filter handleFilter={this.handleFilter} />
+            <ContactList
+              getFilteredContacts={this.getFilteredContacts}
+              onDeleteContact={this.onDeleteContact}
+            ></ContactList>
+          </div>
+        ) : (
+          <p>You don't have any contacts in your phonebook yet.</p>
+        )}
       </div>
     );
   }

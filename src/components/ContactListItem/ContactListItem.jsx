@@ -5,6 +5,9 @@ export class ContactListItem extends Component {
     return this.props.filteredContacts.map(item => (
       <li key={item.id}>
         {item.name}:{item.number}
+        <button onClick={() => this.props.onDeleteContact(item.id)}>
+          Delete
+        </button>
       </li>
     ));
   }
