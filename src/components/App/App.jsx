@@ -1,8 +1,14 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
+import { ContactForm } from '../ContactForm/ContactForm';
+import { Filter } from '../Filter/Filter';
+import { ContactList } from '../ContactList/ContactList';
+import {
+  Container,
+  StyledMessage,
+  StyledMainHeading,
+  StyledHeading,
+} from './App.styled';
 
 export class App extends Component {
   state = {
@@ -13,8 +19,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   createContact = contact => {
@@ -61,13 +65,14 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <StyledMainHeading>Phonebook</StyledMainHeading>
+
         <ContactForm
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
-        <h2>Contacts</h2>
+        <StyledHeading>Contacts</StyledHeading>
         {this.state.contacts.length ? (
           <div>
             <Filter handleFilter={this.handleFilter} />
@@ -77,9 +82,11 @@ export class App extends Component {
             ></ContactList>
           </div>
         ) : (
-          <p>You don't have any contacts in your phonebook yet.</p>
+          <StyledMessage>
+            You don't have any contacts in your phonebook yet.
+          </StyledMessage>
         )}
-      </div>
+      </Container>
     );
   }
 }

@@ -1,33 +1,45 @@
 import { Component } from 'react';
+import {
+  StyledForm,
+  StyledListItem,
+  StyledBtn,
+  StyledInput,
+  StyledLabel,
+} from './ContactForm.styled';
 
 export class ContactForm extends Component {
+  state = {
+    name: '',
+    number: '',
+  };
+
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <StyledForm onSubmit={this.props.handleSubmit}>
         <ul>
-          <li>
-            <label htmlFor="name">Name </label>
-            <input
+          <StyledListItem>
+            <StyledLabel htmlFor="name">Name </StyledLabel>
+            <StyledInput
               type="text"
               name="name"
               id="name"
               required
               onChange={this.props.handleChange}
             />
-          </li>
-          <li>
-            <label htmlFor="number">Number </label>
-            <input
+          </StyledListItem>
+          <StyledListItem>
+            <StyledLabel htmlFor="number">Number </StyledLabel>
+            <StyledInput
               type="tel"
               name="number"
               id="number"
               required
               onChange={this.props.handleChange}
             />
-          </li>
+          </StyledListItem>
         </ul>
-        <button type="submit">Add contact</button>
-      </form>
+        <StyledBtn type="submit">Add contact</StyledBtn>
+      </StyledForm>
     );
   }
 }

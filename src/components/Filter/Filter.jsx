@@ -1,12 +1,17 @@
 import { Component } from 'react';
+import { FilterWrapper, StyledLabel, StyledInput } from './Filter.styled';
 
 export class Filter extends Component {
   render() {
     return (
-      <div>
-        <label htmlFor="filter">Find contact by name</label>
-        <input type="text" id="filter" onChange={this.props.handleFilter} />
-      </div>
+      <FilterWrapper>
+        <StyledLabel htmlFor="filter">Find contacts by name</StyledLabel>
+        <StyledInput
+          type="text"
+          id="filter"
+          onChange={this.props.handleFilter}
+        />
+      </FilterWrapper>
     );
   }
 }
